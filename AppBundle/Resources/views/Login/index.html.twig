@@ -1,0 +1,111 @@
+{% extends "AppBundle::indexLayout.html.twig" %}
+
+{% block body %}
+ 
+<br>
+<br>
+<br>
+{% if rol_id == 1 %}
+<a id="btn_admin_operarios" style="width: 300px;" class="btn btn-primary btn-lg">
+Administrar Operarios
+</a>
+<br>
+<br>
+<a id="btn_admin_autorizados" style="width: 300px;" class="btn btn-primary btn-lg">
+Administrar Autorizados
+</a>
+<br>
+<br>
+<a id="btn_admin_propietarios"  style="width: 300px;" class="btn btn-primary btn-lg">
+Administrar Propietarios
+</a>
+<br>
+<br>
+<a id="btn_reg_ingreso" style="width: 300px;"class="btn btn-primary btn-lg">
+Registrar Ingreso
+</a>
+<br>
+<br>
+<a id="btn_reg_egreso" style="width: 300px;" class="btn btn-primary btn-lg">
+Registrar Egreso
+</a>
+<br>
+<br>
+<a id="btn_reporte" style="width: 300px;" class="btn btn-primary btn-lg">
+Reportes
+</a>
+{% endif %}
+
+{% if rol_id == 2 %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<a id="btn_admin_autorizados" style="width: 300px;" class="btn btn-primary btn-lg">
+Administrar Autorizados
+</a>
+<br>
+<br>
+<a id="btn_reporte" style="width: 300px;" class="btn btn-primary btn-lg">
+Reportes
+</a>
+{% endif %}
+
+{% if rol_id == 3 %}
+<br>
+<br>
+<br>
+<br>
+<a id="btn_reg_ingreso" style="width: 300px;"class="btn btn-primary btn-lg">
+Registrar Ingreso
+</a>
+<br>
+<br>
+<a id="btn_reg_egreso" style="width: 300px;" class="btn btn-primary btn-lg">
+Registrar Egreso
+</a>
+<br>
+<br>
+<a id="btn_reporte" style="width: 300px;" class="btn btn-primary btn-lg">
+Reportes
+</a>
+{% endif %}
+
+
+
+{% block body_js_jquery %}
+	{{ parent() }}
+	{% javascripts output='js/*.js' 
+		'@AppBundle/Resources/public/js/index/index.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+	$('.dropdown-toggle').dropdown();
+
+		var rutas = new Rutas();
+		
+		rutas.rutaAutorizados = "{{ path('autorizados') }}"
+
+		rutas.rutaOperarios = "{{ path('operarios') }}"
+
+		rutas.rutaPropietarios = "{{ path('propietarios') }}"
+
+		rutas.rutaIngreso = "{{ path('ingresos') }}"
+
+		rutas.rutaEgreso = "{{ path('egresos') }}"
+
+		rutas.rutaReportes = "{{ path('reportes') }}"
+		
+	rutas.init();
+		
+
+});
+</script>
+
+{% endblock %}

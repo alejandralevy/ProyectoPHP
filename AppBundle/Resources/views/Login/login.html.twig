@@ -1,0 +1,91 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="well bs-component" style="width: 750px;border-radius: 12px;left: 0;right: 0;top:0;margin: auto;">
+	<form class="form-horizontal" method="post" action="{{ path('login_check') }}">
+  		<fieldset>
+    <legend>
+    Iniciar sesion
+    </legend>
+    		<div class="form-group">
+   	 			<div class="row">
+  					<div class="col-xs-4" style="text-align: right;">
+  						<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">Usuario</label>
+  					</div>
+ 						<div class="col-xs-4 .col-xs-offset-4">
+    						<div class="input-group">
+   					 			<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+  									<input type="text" class="form-control"  autocomplete="off" id="inputUser" required="required" placeholder="Usuario" name="_username" value="{{ last_username }}">
+ 							</div>
+   						</div>
+				</div>
+			</div>
+<br>
+
+  		<div class="form-group">
+   	 		<div class="row">
+  				<div class="col-xs-4" style="text-align: right;">
+  					<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">Contrase&ntilde;a</label>
+  				</div>
+ 					<div class="col-xs-4 .col-xs-offset-4">
+    					<div class="input-group">
+   					 		<span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+  								<input type="password" class="form-control"  autocomplete="off" id="inputPassword" required="required" name="_password" placeholder="Contrase&ntilde;a">
+ 				 		</div>
+   					</div>
+			</div>
+		</div>
+
+<br>
+<br>
+
+    <div class="form-group">
+       <button type="submit" id="submit" class="btn btn-primary btn-default">
+      	 <div id="loading"> 
+      	 Iniciar sesion
+       	</div>
+      </button>
+    </div>
+</fieldset>
+</form>
+</div>
+
+
+<script type="text/javascript">
+			var errorLogin = "";
+
+			$('#submit').click(function() {
+				if(($('#inputUser').val() != "" )& ($('#inputPassword').val() != "")){
+				$('#loading').html("Iniciar Sesion <i class='fa fa-spinner fa-spin fa-fw'></i>");
+				}
+
+			});
+
+			{% if error is defined and error is not null %}
+				errorLogin = "{{ error.messageKey|trans(error.messageData, 'security')|default("")|raw}}";
+			{% endif %}
+
+			$(document).ready(function() {
+			if(errorLogin != ""){
+				bootbox.alert({
+				    message: "El usuario o contrase&ntilde;a son incorrectos. Intene nuevamente",
+				    backdrop: true
+				});
+				
+					
+				}
+			});
+
+			</script>
+
+
+
+   
+{% endblock %}
+
+

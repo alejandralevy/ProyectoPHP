@@ -1,0 +1,91 @@
+{% extends "AppBundle::indexLayout.html.twig" %}
+{% block body %}
+
+
+{% block body_js_jquery %}
+
+	{{ parent() }}
+	{% javascripts output='js/*.js' 
+		'@AppBundle/Resources/public/js/autorizados/autorizados.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+<br>
+<br>
+
+<form class="form-inline" method="post" action="{{ path('autorizados') }}">
+
+  <div class="form-group">
+    <label for="exampleInputName2" style="margin-right: 10px;">DNI</label>
+    <input type="number" autocomplete="off" class="form-control" id="dni"  placeholder="Ingrese DNI">
+  </div>
+  
+  {% if rol_id == 1 %}
+  
+  <div class="form-group">
+    <label for="exampleInputEmail2" style="margin-left: 55px; margin-right: 10px;">Lote</label>
+    <input type="text" autocomplete="off"class="form-control"  id="lote" placeholder="Ingrese Lote">
+  </div>
+  
+  {% endif %}	
+  <div class="form-group">
+    <label for="exampleInputEmail2" style="margin-left: 55px; margin-right: 10px;">Patente</label>
+    <input type="text" autocomplete="off" class="form-control" id="patente" placeholder="Ingrese Patente">
+  </div>
+  <button type="submit" id="submit" style="margin-left: 30px;"  class="btn btn-primary">Buscar</button>
+</form>
+<br>
+
+
+
+<table id="table" style="text-align: center;" class="table table-striped table-hover ">
+  <thead>
+    <tr>
+    	
+    	<th style="text-align: center;">Id</th>
+      <th style="text-align: center;">Apellido</th>
+      <th style="text-align: center;" >Nombre</th>
+      <th style="text-align: center;" >DNI</th>
+      <th style="text-align: center;" >Patente</th>
+      <th id="sort_lote" style="text-align: center;">Lote autorizado</th>
+      <th style="text-align: center;">Editar/Eliminar</th>
+    </tr>
+  </thead>
+</table>
+<br>
+  
+<div id="button_container">
+</div>
+  
+
+
+<form id="my_form" method="post" action="{{ path('nuevoAutorizado') }}">
+<input id="id_editar" name="id_editar" type="hidden"></input>
+</form>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+		var rutas2 = new Rutas();
+		
+		rutas2.rutaSource = "{{ path('tableSource') }}"
+
+		rutas2.rutaEliminarAutorizado = "{{ path('eliminarAutorizado') }}"
+
+		rutas2.rutaNuevoAutorizado = "{{ path('nuevoAutorizado') }}"	
+
+		rutas2.rutaIndex = "{{ path('index') }}"	
+	
+		
+	rutas2.init();
+		
+
+});
+</script>
+
+
+
+{% endblock %}

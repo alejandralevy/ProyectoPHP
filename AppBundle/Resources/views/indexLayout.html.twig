@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        
+        <title>{% block title %}Ingresos y Egresos{% endblock %}</title>
+        
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.min.css') }}">
+        
+        {% block stylesheets %}
+        
+     		{% stylesheets output='css/*.css' filter='css_url_rewrite'
+            '@AppBundle/Resources/public/css/data_table.css'
+            '@AppBundle/Resources/public/css/data_table_selector.css'
+            '@AppBundle/Resources/public/css/bootstrap.css'
+            '@AppBundle/Resources/public/css/bootstrap-datepicker.css'
+            
+ 
+			%}
+   			<link rel="stylesheet" href="{{ asset_url }}" />
+			{% endstylesheets %}
+		{% endblock %}
+		
+ 
+	</head>
+    <body style="text-align: center;">
+   
+ 		<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ path('index') }}"><i class="fa fa-home" aria-hidden="true"></i></a>
+    </div>
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+	<ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bienvenido {{ nombre }}<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ path('_logout') }}">Cerrar Sesion</a></li>
+		</ul>
+        </li>
+		</ul>
+    </div>
+  </div>
+</nav>  
+		{% block body %}
+        
+        {% endblock %}
+
+    {% block body_js_jquery %}
+        
+		{% javascripts
+			'@AppBundle/Resources/public/js/plugins/jquery.js'
+			'@AppBundle/Resources/public/js/plugins/bootstrap.js'
+			'@AppBundle/Resources/public/js/plugins/bootstrap-datepicker.js'
+			'@AppBundle/Resources/public/js/plugins/bootstrap-datepicker.es.js'
+			'@AppBundle/Resources/public/js/plugins/bootbox.min.js'
+			'@AppBundle/Resources/public/js/plugins/data_table.js'
+			'@AppBundle/Resources/public/js/plugins/data_table_selector.js'
+			'@AppBundle/Resources/public/js/plugins/block_ui.js'
+			
+			
+		%}
+    		<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.fn.datepicker.defaults.language = 'es'; //lenguaje espa�ol para el datepicker
+			    $.fn.datepicker.defaults.autoclose = true; //datepicker se cierra cuando se selecciona una fecha		
+			});
+		</script>
+		
+	{% endblock %}
+	
+    </body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        
+        <title>{% block title %}Ingresos y Egresos{% endblock %}</title>
+        
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/app/css/bootstrap-datepicker.css') }}">
+ 
+	</head>
+    <body style="text-align: center;">
+   
+		{% block body %}
+        
+        
+        {% endblock %}
+        
+        
+
+    {% block body_js_jquery %}
+        
+		{% javascripts
+			'@AppBundle/Resources/public/js/plugins/jquery.js'
+			'@AppBundle/Resources/public/js/plugins/bootstrap.js'
+			'@AppBundle/Resources/public/js/plugins/bootstrap-datepicker.js'
+			'@AppBundle/Resources/public/js/plugins/bootstrap-datepicker.es.js'
+			'@AppBundle/Resources/public/js/plugins/bootbox.min.js'
+			
+		%}
+    		<script type="text/javascript" src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+		
+	{% endblock %}
+    </body>
+</html>
+

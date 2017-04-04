@@ -1,0 +1,119 @@
+{% extends "AppBundle::indexLayout.html.twig" %}
+{% block body %}
+
+<br>
+<br>
+
+<div class="well bs-component" style="width: 750px;border-radius: 12px;left: 0;right: 0;top:0;margin: auto;">
+<form class="form-horizontal">
+  <fieldset>
+  <legend>
+  <div id="titulo">
+   Registrar Ingreso
+  </div>
+  </legend>
+	<div class="form-group ">
+   	 	<div class="row">
+  			<div class="col-xs-4" style="text-align: right;">
+  				<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">(*) Apellido</label>
+  			</div>
+ 			<div class="col-xs-4 .col-xs-offset-4">
+  				<input type="text" maxlength="45"  class="form-control" value="" autocomplete="off" id="apellido" placeholder="M&iacute;nimo 3 caracteres">
+   			</div>
+		</div>
+	</div>
+<br>
+  	<div class="form-group ">
+   	 		<div class="row">
+  				<div class="col-xs-4" style="text-align: right;">
+  					<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">(*) Nombre</label>
+  				</div>
+ 			<div class="col-xs-4 .col-xs-offset-4">
+  				<input type="text" maxlength="45" class="form-control" value="" autocomplete="off" id="nombre" placeholder="M&iacute;nimo 3 caracteres">
+   			</div>
+		</div>
+		</div>
+        <br>
+           
+    	<div class="form-group ">
+   	 		<div class="row">
+  				<div class="col-xs-4" style="text-align: right;">
+  					<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">(*) DNI</label>
+  				</div>
+ 			<div class="col-xs-4 .col-xs-offset-4">
+  				<input type="number" maxlength="10" class="form-control" value=""  autocomplete="off" id="dni"  placeholder="M&iacute;nimo 6 caracteres">
+   			</div>
+		</div>
+		</div>
+		
+		<br>
+
+	<div class="form-group ">
+   	 		<div class="row">
+  				<div class="col-xs-4" style="text-align: right;">
+  					<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">Patente</label>
+  				</div>
+ 			<div class="col-xs-4 .col-xs-offset-4">
+  				<input type="text" size="10" class="form-control" value="" autocomplete="off" id="patente" placeholder="M&iacute;nimo 6 caracteres">
+   			</div>
+		</div>
+		</div>
+	<br>
+
+<div class="form-group ">
+   	 		<div class="row">
+  				<div class="col-xs-4" style="text-align: right;">
+  					<label style="text-align: right; margin-bottom: 0;padding-top: 9px;">(*) Lote</label>
+  				</div>
+ 			<div class="col-xs-4 .col-xs-offset-4">
+  				<input type="text" size="5" class="form-control" disabled value=""  autocomplete="off" id="lote" required="required" placeholder="Lote">
+   			</div>
+		</div>
+		</div>
+		<br>
+
+    <div class="form-group">
+       <button type="button" id="eventual" class="btn btn-primary btn-default">Ingreso Eventual</button> 
+       <button type="button" id="submit" style="margin-left: 20px; margin-right: 20px;" class="btn btn-primary btn-default">Buscar Autorizado</button> 
+       <button type="button" id="rechazo" class="btn btn-primary btn-default">Registrar rechazo</button> 
+       <br>
+       <br>
+       <button type="button" id="cancelar" class="btn btn-primary btn-default">Volver</button> 
+       <button type="button" id="ingreso" style="margin-left: 20px; margin-right: 20px;" class="btn btn-success btn-lg">Registrar</button>
+       <button type="button" id="limpiar" class="btn btn-primary btn-default">Limpiar</button> 
+        
+     </div>
+    </div>
+</div>
+</fieldset>
+</form>
+</div>
+
+{% block body_js_jquery %}
+	{{ parent() }}
+	{% javascripts output='js/*.js' 
+		'@AppBundle/Resources/public/js/ingresos/ingresos.js'
+	%}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+		var rutas = new Rutas();
+		
+		rutas.rutaIndex = "{{ path('index') }}"	
+
+		rutas.rutaBuscarAutorizado = "{{ path('buscarAutorizado') }}"
+
+		rutas.rutaRegistrarIngreso = "{{ path('registrarIngreso') }}"
+		
+		rutas.init();
+
+});
+</script>
+
+
+{% endblock %}

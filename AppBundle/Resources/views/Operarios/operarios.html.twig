@@ -1,0 +1,76 @@
+{% extends "AppBundle::indexLayout.html.twig" %}
+{% block body %}
+{% block body_js_jquery %}
+	{{ parent() }}
+	{% javascripts output='js/*.js' 
+		'@AppBundle/Resources/public/js/operarios/operarios.js' %}
+	<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}
+<br>
+<br>
+
+<form class="form-inline" method="post" action="{{ path('operarios') }}">
+  <div class="form-group">
+    <label style="margin-right: 10px;" for="exampleInputName2">DNI</label>
+    <input type="number" autocomplete="off" class="form-control" id="dni" placeholder="Ingrese DNI">
+  </div>
+  
+  <div class="form-group">
+    <label style="margin-left: 55px; margin-right: 10px;" for="exampleInputName2">Apellido</label>
+    <input type="text" autocomplete="off" class="form-control" id="apellido" placeholder="Ingrese Apellido">
+  </div>
+  
+  <div class="form-group">
+    <label style="margin-left: 55px; margin-right: 10px;" for="exampleInputEmail2">Nombre</label>
+    <input type="email" autocomplete="off" class="form-control" id="nombre" placeholder="Ingrese Nombre">
+  </div>
+  <button id="submit" type="submit" style="margin-left: 30px;" class="btn btn-primary">Buscar</button>
+</form>
+<br>
+
+<table id="table" style="text-align: center;" class="table table-striped table-hover ">
+  <thead>
+    <tr>
+    	<th style="text-align: center;">Id</th>
+      	<th style="text-align: center;">Apellido</th>
+      	<th style="text-align: center;" >Nombre</th>
+      	<th style="text-align: center;" >DNI</th>
+      	<th style="text-align: center;">Editar/Eliminar</th>
+   </tr>
+  </thead>
+</table>
+
+<br>
+  
+<div id="button_container">
+</div>
+
+<form id="my_form" method="post" action="{{ path('nuevoOperario') }}">
+	<input id="id_editar" name="id_editar" type="hidden"></input>
+</form>
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+		var rutas = new Rutas();
+		
+		rutas.rutaSourceOperarios = "{{ path('tableSourceOperarios') }}"
+
+		rutas.rutaEliminarOperario = "{{ path('eliminarOperario') }}"
+
+		rutas.rutaNuevoOperario = "{{ path('nuevoOperario') }}"	
+
+		rutas.rutaIndex = "{{ path('index') }}"	
+		
+	rutas.init();
+		
+
+});
+</script>
+
+
+{% endblock %}
